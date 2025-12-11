@@ -182,7 +182,39 @@ struct ContentView: View {
                         .toolbar {
 #if os(iOS)
                             ToolbarItem(placement: .navigationBarTrailing) {
-                                EditButton()
+                                Menu {
+                                    // Навигация к ИИ ассистенту
+                                    NavigationLink {
+                                        AssistantPlaceholderView()
+                                    } label: {
+                                        Label("ИИ ассистент", systemImage: "sparkles")
+                                    }
+
+                                    // Навигация к профилю
+                                    NavigationLink {
+                                        ProfilePlaceholderView(currentEmail: auth.currentUserEmail ?? "")
+                                    } label: {
+                                        Label("Профиль", systemImage: "person.crop.circle")
+                                    }
+
+                                    Divider()
+
+                                    Button {
+                                        addItem()
+                                    } label: {
+                                        Label("Добавить", systemImage: "plus")
+                                    }
+
+                                    Button(role: .destructive) {
+                                        auth.signOut()
+                                    } label: {
+                                        Label("Выйти", systemImage: "rectangle.portrait.and.arrow.right")
+                                    }
+                                } label: {
+                                    Image(systemName: "line.3.horizontal")
+                                        .imageScale(.large)
+                                }
+                                .accessibilityLabel("Меню")
                             }
 #endif
                         }
@@ -208,6 +240,74 @@ struct ContentView: View {
                 modelContext.delete(items[index])
             }
         }
+    }
+}
+
+// MARK: - Placeholders
+
+private struct AssistantPlaceholderView: View {
+    var body: some View {
+        ZStack {
+            PinkPurpleFloatingBackground()
+            VStack(spacing: 16) {
+                Text("ИИ ассистент")
+                    .font(.system(.largeTitle, design: .rounded, weight: .bold))
+                    .foregroundStyle(.primary)
+                    .shadow(color: Color.purple.opacity(0.25), radius: 8, x: 0, y: 4)
+
+                Text("Здесь будет ваш ассистент ИИ.")
+                    .foregroundStyle(.secondary)
+            }
+            .padding(22)
+        }
+        .navigationTitle("ИИ ассистент")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+private struct ProfilePlaceholderView: View {
+    let currentEmail: String
+
+    var body: some View {
+        ZStack {
+            PinkPurpleFloatingBackground()
+            VStack(spacing: 18) {
+                Text("Профиль")
+                    .font(.system(.largeTitle, design: .rounded, weight: .bold))
+                    .foregroundStyle(.primary)
+                    .shadow(color: Color.purple.opacity(0.25), radius: 8, x: 0, y: 4)
+
+                VStack(spacing: 12) {
+                    Label {
+                        Text(currentEmail.isEmpty ? "Не указан" : currentEmail)
+                            .font(.headline)
+                    } icon: {
+                        Image(systemName: "envelope")
+                            .foregroundStyle(.secondary)
+                    }
+
+                    Label {
+                        Text("Имя пользователя")
+                            .font(.headline)
+                    } icon: {
+                        Image(systemName: "person")
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .padding(22)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 22, style: .continuous)
+                        .strokeBorder(.white.opacity(0.35), lineWidth: 1.2)
+                )
+                .shadow(color: .black.opacity(0.12), radius: 20, x: 0, y: 12)
+                .padding(.horizontal)
+            }
+            .padding(.vertical, 26)
+        }
+        .navigationTitle("Профиль")
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
