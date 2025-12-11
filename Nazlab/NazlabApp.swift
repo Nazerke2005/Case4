@@ -2,7 +2,7 @@
 //  NazlabApp.swift
 //  Nazlab
 //
-//  Created by Nazerke Turganbek on 11.12.2025.
+//  Created by Nazerke Turgанбек on 11.12.2025.
 //
 
 import SwiftUI
@@ -10,9 +10,12 @@ import SwiftData
 
 @main
 struct NazlabApp: App {
+    @State private var auth = AuthManager()
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
+            User.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -26,7 +29,9 @@ struct NazlabApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(auth)
         }
         .modelContainer(sharedModelContainer)
     }
 }
+

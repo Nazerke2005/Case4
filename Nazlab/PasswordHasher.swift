@@ -1,0 +1,18 @@
+//
+//  PasswordHasher.swift
+//  Nazlab
+//
+//  Created by Nazerke Turganbek on 11.12.2025.
+//
+
+import Foundation
+import CryptoKit
+
+enum PasswordHasher {
+    static func hash(_ password: String) -> String {
+        let data = Data(password.utf8)
+        let digest = SHA256.hash(data: data)
+        return digest.compactMap { String(format: "%02x", $0) }.joined()
+    }
+}
+
