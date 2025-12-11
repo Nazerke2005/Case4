@@ -7,10 +7,12 @@
 
 import SwiftUI
 import SwiftData
+import CoreData
 
 struct RegistrationView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(AuthManager.self) private var auth
+    @Environment(\.dismiss) private var dismiss
 
     // Для проверки уникальности email (оставим, но в register перейдем на выборку по предикату)
     @Query(sort: \User.createdAt) private var users: [User]
@@ -278,6 +280,8 @@ struct RegistrationView: View {
         do {
             try modelContext.save()
             auth.signIn(as: normalizedEmail)
+            // Явно закрыть экран, если он был показан модально (не навредит, если нет)
+            dismiss()
         } catch {
             // Возможная гонка/нарушение уникальности email
             if (error as NSError).code == NSPersistentStoreSaveError || (error as NSError).domain.contains("SwiftData") {
