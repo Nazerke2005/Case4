@@ -1,0 +1,24 @@
+//
+//  Localizable.strings
+//  Nazlab
+//
+//  Created by Sabina Bekkuly on 14.12.2025.
+//
+
+"home.title" = "Главная";
+"home.subtitle" = "Создавайте поурочные планы легко";
+
+"search.placeholder" = "Поиск по планам уроков";
+
+"sample.title" = "Образец поурочного плана";
+"saved.title" = "Ваши планы уроков";
+
+"create.title" = "Создание плана";
+"save" = "Сохранить";
+"download.pdf" = "Скачать PDF";
+"download.doc" = "Скачать DOC";
+
+"profile.title" = "Профиль";
+"settings.title" = "Настройки";
+"language.title" = "Язык";
+

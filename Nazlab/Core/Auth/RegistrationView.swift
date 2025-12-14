@@ -293,7 +293,6 @@ struct RegistrationView: View {
     }
 }
 
-// MARK: - StyledLabeledTextField
 
 private struct StyledLabeledTextField: View {
     let title: String

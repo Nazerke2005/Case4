@@ -26,12 +26,16 @@ struct NazlabApp: App {
             fatalError("Could not create ModelContainer: \(error)")
         }
     }()
-
+    
+    @StateObject private var languageManager = LanguageManager()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(auth)
+                .environment(auth) // <-- inject AuthManager for @Environment(AuthManager.self)
+                .environmentObject(languageManager)
+                .environment(\.locale, languageManager.current.locale)
+                .modelContainer(sharedModelContainer) // ensure SwiftData is available app-wide
         }
-        .modelContainer(sharedModelContainer)
     }
 }
