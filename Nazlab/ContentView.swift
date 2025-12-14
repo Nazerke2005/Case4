@@ -18,20 +18,20 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             PinkPurpleFloatingBackground()
-
             Group {
 
-                // 1️⃣ Onboarding көрсетеміз
+                // 1️⃣ Onboarding
                 if showOnboarding {
                     OnboardingView(showOnboarding: $showOnboarding)
 
-                // 2️⃣ Егер onboarding бітсе, бірақ user әлі кірмеген болса → Registration
+                // 2️⃣ Registration
                 } else if !auth.isAuthenticated {
                     RegistrationView()
 
-                // 3️⃣ Егер user кіру жасаса → Home экран
+                // 3️⃣ Home
                 } else {
                     NavigationStack {
+
                         VStack(spacing: 22) {
 
                             // Заголовок
@@ -39,7 +39,7 @@ struct ContentView: View {
                                 Text("Главная")
                                     .font(.system(.largeTitle, design: .rounded, weight: .bold))
                                     .foregroundStyle(.primary)
-                                    .shadow(color: Color.purple.opacity(0.25), radius: 8, x: 0, y: 4)
+                                    .shadow(color: Color.purple.opacity(0.25), radius: 8)
 
                                 Text("Ваши элементы")
                                     .font(.subheadline)
@@ -102,7 +102,7 @@ struct ContentView: View {
                                                             RoundedRectangle(cornerRadius: 22)
                                                                 .stroke(.white.opacity(0.35), lineWidth: 1.2)
                                                         )
-                                                        .shadow(color: .black.opacity(0.12), radius: 20, y: 12)
+                                                        .shadow(color: .black.opacity(0.12), radius: 20)
                                                         .padding(.horizontal)
 
                                                         Spacer(minLength: 16)
@@ -138,10 +138,10 @@ struct ContentView: View {
                                 RoundedRectangle(cornerRadius: 22)
                                     .stroke(.white.opacity(0.35), lineWidth: 1.2)
                             )
-                            .shadow(color: .black.opacity(0.12), radius: 20, y: 12)
+                            .shadow(color: .black.opacity(0.12), radius: 20)
                             .padding(.horizontal)
 
-                            // Кнопка добавления
+                            // Добавить кнопку
                             HStack(spacing: 12) {
                                 Button {
                                     addItem()
@@ -159,7 +159,7 @@ struct ContentView: View {
                                             .clipShape(RoundedRectangle(cornerRadius: 16))
                                     )
                                     .foregroundStyle(.white)
-                                    .shadow(color: .pink.opacity(0.35), radius: 14, y: 10)
+                                    .shadow(color: .pink.opacity(0.35), radius: 14)
                                 }
                             }
                             .padding(.horizontal)
@@ -167,6 +167,45 @@ struct ContentView: View {
                             Spacer(minLength: 26)
                         }
                         .padding(.bottom, 12)
+
+                        // 🔥🔥🔥 БУРГЕР МЕНЮ ДҰРЫС ОРНЫНА ҚАЙТАРЫЛДЫ
+                        .toolbar {
+#if os(iOS)
+                            ToolbarItem(placement: .navigationBarTrailing) {
+
+                                Menu {
+
+                                    // 1️⃣ AI ASSISTANT (Gemini)
+                                    NavigationLink {
+                                        AssistantView()
+                                    } label: {
+                                        Label("ИИ ассистент", systemImage: "sparkles")
+                                    }
+
+                                    // 2️⃣ Профиль
+                                    NavigationLink {
+                                        Text(auth.currentUserEmail ?? "Нет email")
+                                            .padding()
+                                    } label: {
+                                        Label("Профиль", systemImage: "person.crop.circle")
+                                    }
+
+                                    Divider()
+
+                                    // 3️⃣ Логаут
+                                    Button {
+                                        auth.signOut()
+                                    } label: {
+                                        Label("Выйти", systemImage: "rectangle.portrait.and.arrow.right")
+                                    }
+
+                                } label: {
+                                    Image(systemName: "line.3.horizontal")
+                                        .imageScale(.large)
+                                }
+                            }
+#endif
+                        }
                     }
                 }
             }
@@ -174,7 +213,6 @@ struct ContentView: View {
         }
     }
 
-    // MARK: CRUD
     private func addItem() {
         withAnimation {
             let newItem = Item(timestamp: Date())
@@ -190,3 +228,4 @@ struct ContentView: View {
         }
     }
 }
+

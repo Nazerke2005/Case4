@@ -2,7 +2,7 @@
 //  NazlabApp.swift
 //  Nazlab
 //
-//  Created by Nazerke Turgанбек on 11.12.2025.
+//  Created by Nazerke Tургaнбек on 11.12.2025.
 //
 
 import SwiftUI
@@ -16,6 +16,7 @@ struct NazlabApp: App {
         let schema = Schema([
             Item.self,
             User.self,
+            ChatMessage.self, // добавили модель чата
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -34,4 +35,3 @@ struct NazlabApp: App {
         .modelContainer(sharedModelContainer)
     }
 }
-

@@ -64,7 +64,7 @@ struct OnboardingView: View {
                 Image("appLogo")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 180, height: 180)     // ← Мына өлшемді қалауыңа қарай өзгерте аласың
+                    .frame(width: 200, height: 200)     
                     .shadow(color: .white.opacity(0.4), radius: 20)
                     .opacity(titleAppear ? 1 : 0)
                     .scaleEffect(titleAppear ? 1 : 0.7)
