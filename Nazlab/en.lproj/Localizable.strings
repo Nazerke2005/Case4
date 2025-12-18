@@ -1,0 +1,23 @@
+//
+//  Localizable.strings
+//  Nazlab
+//
+//  Created by Sabina Bekkuly on 14.12.2025.
+//
+
+"home.title" = "Басты бет";
+"home.subtitle" = "Сабақ жоспарларын оңай жасаңыз";
+
+"search.placeholder" = "Сабақ жоспарларын іздеу";
+
+"sample.title" = "Сабақ жоспарының үлгісі";
+"saved.title" = "Сіздің сабақ жоспарларыңыз";
+
+"create.title" = "Сабақ жоспарын құру";
+"save" = "Сақтау";
+"download.pdf" = "PDF жүктеу";
+"download.doc" = "DOC жүктеу";
+
+"profile.title" = "Профиль";
+"settings.title" = "Баптаулар";
+"language.title" = "Тіл";

@@ -2,7 +2,7 @@
 //  AuthManager.swift
 //  Nazlab
 //
-//  Created by Nazerke Turganбек on 11.12.2025.
+//  Created by Nazerke Turganbек on 11.12.2025.
 //
 
 import Foundation
@@ -11,7 +11,7 @@ import Observation
 
 @Observable
 final class AuthManager {
-    // Prevent Observation from generating tracking storage for this AppStorage-backed property.
+    
     @ObservationIgnored
     @AppStorage("currentUserEmail") private var storedEmail: String = ""
 
@@ -20,7 +20,7 @@ final class AuthManager {
         set {
             let normalized = newValue?.lowercased() ?? ""
             storedEmail = normalized
-            // Принудительно синхронизируем UserDefaults, чтобы исключить задержки
+            
             UserDefaults.standard.set(normalized, forKey: "currentUserEmail")
             UserDefaults.standard.synchronize()
         }

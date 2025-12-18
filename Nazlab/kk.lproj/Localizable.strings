@@ -1,0 +1,23 @@
+//
+//  Localizable.strings
+//  Nazlab
+//
+//  Created by Sabina Bekkuly on 14.12.2025.
+//
+
+"home.title" = "Home";
+"home.subtitle" = "Create lesson plans easily";
+
+"search.placeholder" = "Search lesson plans";
+
+"sample.title" = "Sample lesson plan";
+"saved.title" = "Your lesson plans";
+
+"create.title" = "Create lesson plan";
+"save" = "Save";
+"download.pdf" = "Download PDF";
+"download.doc" = "Download DOC";
+
+"profile.title" = "Profile";
+"settings.title" = "Settings";
+"language.title" = "Language";
