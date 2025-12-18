@@ -2,7 +2,7 @@
 //  LessonPlanExporters.swift
 //  Nazlab
 //
-//  Created by Assistant on 14.12.2025.
+//  Created by Nazerke Turganbek on 14.12.2025.
 //
 
 import SwiftUI

@@ -5,19 +5,6 @@
 //  Created by Sabina Bekkuly on 14.12.2025.
 //
 
-//
-//  CreateLessonPlanView.swift
-//  Nazlab
-//
-//  Created by Sabina Bekkuly on 14.12.2025.
-//
-//
-//  CreateLessonPlanView.swift
-//  Nazlab
-//
-//  Created by Sabina Bekkuly on 14.12.2025.
-//
-
 import SwiftUI
 import SwiftData
 import PhotosUI
@@ -25,11 +12,9 @@ import UIKit
 
 struct CreateLessonPlanView: View {
 
-    // MARK: - Environment
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
 
-    // MARK: - Form fields
     @State private var subject = ""
     @State private var grade = ""
     @State private var title = ""
@@ -40,14 +25,12 @@ struct CreateLessonPlanView: View {
     @State private var createdPlan: LessonPlan?
     @State private var showPreview = false
 
-    // MARK: - Image
     @State private var selectedItem: PhotosPickerItem?
     @State private var imageData: Data?
 
-    // MARK: - AI
     @State private var isFillingWithAI = false
 
-    // MARK: - View
+    // View
     var body: some View {
         ZStack {
             PinkPurpleFloatingBackground()
@@ -76,7 +59,7 @@ struct CreateLessonPlanView: View {
         }
     }
 
-    // MARK: - Form Card
+    // Form Card
     private var formCard: some View {
         VStack(alignment: .leading, spacing: 16) {
 
@@ -129,7 +112,7 @@ struct CreateLessonPlanView: View {
         .padding(.horizontal)
     }
 
-    // MARK: - Form helpers
+    // Form helpers
     private func formField(_ title: String, text: Binding<String>) -> some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(title)
@@ -157,7 +140,7 @@ struct CreateLessonPlanView: View {
         }
     }
 
-    // MARK: - Image picker
+    // Image picker
     private var imagePicker: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Фото для урока (необязательно)")
@@ -186,7 +169,7 @@ struct CreateLessonPlanView: View {
         }
     }
 
-    // MARK: - Save
+    // Save
     private func saveLessonPlan() {
         let plan = LessonPlan(
             title: title,
@@ -205,7 +188,7 @@ struct CreateLessonPlanView: View {
         showPreview = true
     }
 
-    // MARK: - AI
+    //  AI
     private func fillWithAI() async {
         isFillingWithAI = true
         defer { isFillingWithAI = false }

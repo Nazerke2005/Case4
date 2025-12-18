@@ -2,7 +2,7 @@
 //  PinkPurpleFloatingBackground.swift
 //  Nazlab
 //
-//  Created by Nazerke Turganбек on 11.12.2025.
+//  Created by Nazerke Turganbек on 11.12.2025.
 //
 
 import SwiftUI
@@ -14,7 +14,7 @@ struct PinkPurpleFloatingBackground: View {
     var body: some View {
         TimelineView(.animation(minimumInterval: 1/30, paused: false)) { _ in
             ZStack {
-                // Базовый плавный градиент (медленно “дышит”)
+                
                 LinearGradient(
                     colors: [
                         Color(red: 0.99, green: 0.90, blue: 0.95), // нежно-розовый светлый

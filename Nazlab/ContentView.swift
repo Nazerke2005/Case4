@@ -42,7 +42,7 @@ struct ContentView: View {
                                     }
 
                                     NavigationLink {
-                                        ProfileView()
+                                        ProfilePlaceholderView()
                                     } label: {
                                         Label("Профиль", systemImage: "person.crop.circle")
                                     }

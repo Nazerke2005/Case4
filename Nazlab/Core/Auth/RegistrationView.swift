@@ -211,7 +211,6 @@ struct RegistrationView: View {
         .animation(.smooth(duration: 0.25), value: canSubmit)
     }
 
-    // MARK: - Validation states for styling
 
     enum ValidationState {
         case normal, valid, invalid
@@ -250,7 +249,7 @@ struct RegistrationView: View {
         return email.range(of: pattern, options: [.regularExpression, .caseInsensitive]) != nil
     }
 
-    @MainActor
+
     private func register() async {
         errorMessage = nil
         isProcessing = true
